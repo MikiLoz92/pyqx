@@ -33,7 +33,7 @@ class NewFileDialog(QtGui.QDialog):
 		clipboard = QtGui.QApplication.clipboard()
 		print "Accesses clipboard"
 		im = clipboard.image()
-		if im:
+		if not im.isNull():
 			print "Image not null"
 			self.width.setValue(im.width())
 			self.height.setValue(im.height())
