@@ -1,0 +1,182 @@
+[_lang]
+name = Español
+
+[pyqx]
+title = pyQx
+
+# ------------
+# --- MENU ---
+# ------------
+
+[menu]
+file = &Archivo
+edit = &Editar
+transform = &Transformar
+help = A&yuda
+view = &Ver
+
+[menu_file_labels]
+new = &Nueva
+open = &Abrir
+save = &Guardar
+saveas = Guardar como...
+exit= Sali&r
+
+[menu_file_status_tips]
+new = Crear una nueva imagen
+open = Abrir un imagen existente
+save = Guardar la imagen actual
+saveas = Guardar la imagen actual con un nombre de archivo diferente
+exit = Salir de la aplicación
+
+[menu_edit_labels]
+undo = &Deshacer
+redo = &Rehacer
+selectall = Seleccionar todo
+deselect = Deseleccionar
+cut = Cor&tar
+copy = &Copiar
+paste = &Pegar
+clear = E&liminar
+preferences = P&referencias
+
+[menu_edit_status_tips]
+undo = Deshacer la última acción
+redo = Rehacer la última acción
+cut = Cortar la imagen o una parte
+copy = Copiar la imagen o una parte
+paste = Pegar una imagen encima
+clear = Eliminar la imagen o una parte
+preferences = Abrir el diálogo de preferencias
+
+[menu_view_labels]
+pixel_grid = Rejilla de píxel
+matrix_grid = Rejilla matricial
+
+[menu_view_status_tips]
+pixel_grid = Activar o desactivar rejilla de píxel
+matrix_grid = Activar o desactivar rejilla matricial
+
+[menu_transform_labels]
+flip_hor = Voltear horizontalmente
+flip_ver = Voltear verticalmente
+rotate_cw = Rotar 90º en sentido horario
+rotate_ccw = Rotar 90º en sentido antihorario
+rotate_180 = Rotar 180º
+resize = Redimensionar...
+resize_canvas = Redimensionar lienzo...
+
+[menu_transform_status_tips]
+flip_hor = Voltear horizontalmente la imagen o una parte de ella
+flip_ver = Voltear verticalmente la imagen o una parte de ella
+rotate_cw = Rotar 90º en sentido horario la imagen o una parte de ella
+rotate_ccw = Rotar 90º en sentido antihorario la imagen o una parte de ella
+rotate_180 = Rotar 180º la imagen o una parte de ella
+resize = Modificar el tamaño de la imagen o de una parte de ella
+resize_canvas = Modificar el tamaño del lienzo
+
+[menu_help_labels]
+contents = &Ayuda
+about = A&cerca de...
+
+[menu_help_status_tips]
+contents = Abrir la ventana de ayuda
+about = Acerca de Pixs2Pics
+
+# ---------------
+# --- DIALOGS ---
+# ---------------
+
+[dialog_new_image]
+title = Crear una imagen nueva
+dimension = Dimensiones
+background = Fondo
+transparent = Transparente
+color = Color:
+
+[dialog_open]
+title = Abre una imagen existente
+images = Imágenes
+all_files = Todos los archivos
+
+[dialog_save]
+title = Guarda la imagen actual
+
+[dialog_resize]
+title = Redimensionar...
+dimension = Nuevas dimensiones
+
+[dialog_resize_canvas]
+title = Redimensionar lienzo...
+dimension = Nuevas dimensiones
+
+[dialog_preferences]
+title=Preferencias
+item_language = Idioma
+item_language_language = Idioma
+item_language_changed_title = Ajustes de idioma cambiados
+item_language_changed_message = Tendrás que reinicar Pix2Pics para que se apliquen los nuevos ajustes de idioma.
+item_theme = Tema
+item_theme_theme = Tema
+item_theme_changed_title = Ajustes de tema cambiados
+item_theme_changed_message = Tendrás que reinicar Pix2Pics para que se apliquen los nuevos ajustes de tema.
+item_matrix_grid = Rejilla matricial
+item_matrix_grid_dimension = Dimensiones
+
+[dialog_about]
+title = Acerca de Pixs2Pics
+description = Pixs2Pics es un programa de Pixel Art polivalente, puedes crear sprites y tiles o editar imágenes sin complicaciones.
+#Autores:\n- Miguel Vera Belmonte\n- Alicia Guindulain\n- Antonio Peris\n- Luis Mollà\n-Natacza Johnson
+
+[dialog_exit]
+title = Salir
+message = Hay cambios sin guardar. ¿Estás seguro de que deseas salir?
+
+# -------------
+# --- TOOLS ---
+# -------------
+
+[tools]
+selection = Selección
+magicwand = Varita mágica
+pencil = Lápiz
+brush = Pincel
+eraser = Goma
+colorpicker = Pipeta de color
+zoomin = Zoom hacia dentro
+zoomout = Zoom hacia fuera
+fill = Cubeta
+gradient = Degradado
+exchange = Intercambiar colores
+
+# --------------------
+# --- DOCK WIDGETS ---
+# --------------------
+
+[dock_widgets]
+palette = Paleta
+tool_properties = Opciones de herramienta
+preview = Miniatura
+
+# -----------------------
+# --- TOOL PROPERTIES ---
+# -----------------------
+
+[tool_properties_selection]
+transparent = Selección transparente
+
+[tool_properties_pencil]
+size = Tamaño:
+eraser = Usar goma en vez\nde color secundario
+
+[tool_properties_eraser]
+size = Tamaño:
+
+[tool_properties_gradient]
+horizontal = Horizontal
+vertical = Vertical
+
+[status]
+ready = Listo
+
+[newimage]

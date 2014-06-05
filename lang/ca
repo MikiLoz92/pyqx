@@ -1,0 +1,179 @@
+[_lang]
+name = Català
+
+[pyqx]
+title = pyQx
+
+# ------------
+# --- MENU ---
+# ------------
+
+[menu]
+file = &Arxiu
+edit = &Editar
+transform = &Transformar
+help = A&juda
+view = &Veure
+
+[menu_file_labels]
+new = &Nova
+open = &Obrir
+save = &Desa
+saveas = Desa &com...
+exit= Sorti&r
+
+[menu_file_status_tips]
+new = Crear una nova imatge
+open = Obrir una imagen existent
+save = Desa la imatge actual
+saveas = Desar la imatge actual amb un nom d'arxiu diferent
+exit = Sortir de l'aplicació
+
+[menu_edit_labels]
+undo = &Desfer
+redo = &Refer
+cut = Tall&ar
+copy = &Copiar
+paste = &Enganxar
+clear = E&liminar
+preferences = P&referències
+
+[menu_edit_status_tips]
+undo = Desfés l'última acció
+redo = Refés l'última acció
+cut = Talla la imatge o una part
+copy = Copia la imatge o una part
+paste = Enganxa una imatge a sobre
+clear = Elimina la imatge o una part
+preferences = Obrir el diàleg de preferències
+
+[menu_view_labels]
+pixel_grid = Graella de píxel
+matrix_grid = Graella matricial
+
+[menu_view_status_tips]
+pixel_grid = Activar o desactivar graella de píxel
+matrix_grid = Activar o desactivar graella matricial
+
+[menu_transform_labels]
+flip_hor = Girar horizontalment
+flip_ver = Girar verticalment
+rotate_cw = Rotar 90º en sentit horari
+rotate_ccw = Rotar 90º en sentit antihorari
+rotate_180 = Rotar 180º
+resize = Redimensionar...
+resize_canvas = Redimensionar llenç...
+
+[menu_transform_status_tips]
+flip_hor = Girar horizontalment la imatge o una part
+flip_ver = Girar verticalment la imatge o una part
+rotate_cw = Rotar 90º en sentit horarit la imatge o una part
+rotate_ccw = Rotar 90º en sentit antihorari la imatge o una part
+rotate_180 = Rotar 180º la imatge o una part
+resize = Modificar la grandària de la imatge o d'una part
+resize_canvas = Modificar la grandària del llenç
+
+[menu_help_labels]
+contents = &Ajuda
+about = E&n quant a...
+
+[menu_help_status_tips]
+contents = Obrir la finestra d'ajuda
+about = En quant a Pixs2Pics
+
+# ---------------
+# --- DIALOGS ---
+# ---------------
+
+[dialog_new_image]
+title = Crear una nova imatge
+dimension = Dimensions
+background = Fons
+transparent = Transparent
+color = Color:
+
+[dialog_open]
+title = Obrir una imatge existent
+images = Imatges
+all_files = Tots els arxius
+
+[dialog_save]
+title = Guarda la imatge actual
+
+[dialog_resize]
+title = Redimensionar...
+dimension = Noves dimensions
+
+[dialog_resize_canvas]
+title = Redimensionar llenç...
+dimension = Noves dimensions
+
+[dialog_preferences]
+title=Preferèncias
+item_language = Idioma
+item_language_language = Idioma
+item_language_changed_title = Opcions d'idioma cambiades
+item_language_changed_message = Tindràs que reinicar Pix2Pics per que s'apliquin els nous canvis d'idioma.
+item_theme = Tema
+item_theme_theme = Tema
+item_theme_changed_title = Opcions de tema cambiades
+item_theme_changed_message = Tindràs que reinicar Pix2Pics per que s'apliquin els nous canvis en el tema.
+item_matrix_grid = Graella matricial
+item_matrix_grid_dimension = Dimensions
+
+[dialog_about]
+title = En quant a Pixs2Pics
+description = Pixs2Pics és un programa de Pixel Art polivalent, pots crear sprites i tiles o editar imatges sense complicacions.
+#Autors:\n- Miguel Vera Belmonte\n- Alicia Guindulain\n- Antonio Peris\n- Luis Mollà\n-Natacza Johnson
+
+[dialog_exit]
+title = Sortir
+message = Hi ha canvis que encara no s'han guardat. Estás segur que vols sortir?
+
+# -------------
+# --- TOOLS ---
+# -------------
+
+[tools]
+selection = Selecció
+pencil = Llapis
+brush = Pinzell
+eraser = Goma
+colorpicker = Pipeta de color
+zoomin = Zoom endins
+zoomout = Zoom enfuera
+fill = Cubeta
+gradient = Degradat
+exchange = Intercambiar colors
+
+# --------------------
+# --- DOCK WIDGETS ---
+# --------------------
+
+[dock_widgets]
+palette = Paleta
+tool_properties = Opcions d'eina
+preview = Miniatura
+
+# -----------------------
+# --- TOOL PROPERTIES ---
+# -----------------------
+
+[tool_properties_selection]
+transparent = Selecció transparent
+
+[tool_properties_pencil]
+size = Grandària:
+eraser = Usar la goma en comptes\ndel color secundari
+
+[tool_properties_eraser]
+size = Grandària:
+
+[tool_properties_gradient]
+horizontal = Horizontal
+vertical = Vertical
+
+[status]
+ready = Llest
+
+[newimage]

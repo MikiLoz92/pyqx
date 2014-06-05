@@ -1,0 +1,177 @@
+[_lang]  
+name = Français
+  
+[pyqx]  
+title = Pixs2Pics  
+  
+# ------------  
+# --- MENU ---  
+# ------------  
+  
+[menu]  
+file = &File
+edit = &Modifier
+transform = &Transformation
+help = &Aide
+view = &Voir
+  
+[menu_file_labels]  
+new = &Neu
+open = &Oubrir
+save = &Engeristrer
+saveas = Enregistrer sous ...
+exit = &Quitter
+  
+[menu_file_status_tips]  
+new  =  Créer une nouvelle image
+open  =  Ouvrez une image existante
+save  =  Enregistrer l'image actuelle
+saveas  =  Enregistre une nouvelle image
+exit  =  Quitter l'application
+  
+[menu_edit_labels]  
+undo = &Annuler
+redo = &Redo
+cut = Cu&t
+copy = &Copy
+paste = &Paste
+clear = C&lear
+preferences = &Préférences
+  
+[menu_edit_status_tips]  
+undo  =  Annuler la dernière action
+redo  =  Rétablir la dernière action
+cut  =  Couper l'image ou une partie de celui-ci
+copy  =  Copiez l'image ou une partie de celui-ci
+paste  =  Coller une image sur celui-ci
+clear  =  Effacer l'image ou une partie de celui-ci
+preferences  =  Ouvrez la boîte de dialogue des préférences
+  
+[menu_view_labels]  
+pixel_grid  =  Grille de pixels
+matrix_grid  =  Grille matricielle
+  
+[menu_view_status_tips]  
+pixel_grid  =  Grille de pixels bascule
+matrix_grid  =  Grille de matrice à bascule
+  
+[menu_transform_labels]  
+flip_hor  =  Retourner horizontalement
+flip_ver  =  Retourner verticalement
+rotate_cw  =  Tournez de 90° vers la droite
+rotate_ccw  =  Tourner de 90° dans le sens antihoraire
+rotate_180  =  Une rotation de 180º
+resize  =  Redimensionner
+resize_canvas  =  Taille de la toile...
+  
+[menu_transform_status_tips]  
+flip_hor  =  Retourner horizontalement l'image ou une partie de celui-ci
+flip_ver  =  Retourner verticalement l'image ou une partie de celui-ci
+rotate_cw  =  Tournez de 90 ° dans le sens horaire l'image ou une partie de celui-ci
+rotate_ccw  =  Tourner de 90 ° dans le sens antihoraire de l'image ou une partie de celui-ci
+rotate_180  =  Une rotation de 180 º de l'image ou une partie de celui-ci
+resize  =  Redimensionner l'image ou une partie de celui-ci
+resize_canvas  =  Redimensionner la toile
+  
+[menu_help_labels]  
+contents = Et matières
+about = &Propos
+  
+[menu_help_status_tips]  
+contents  =  Afficher la fenêtre d'aide
+about  =  À propos de Pix2Pics ...
+  
+# ---------------  
+# --- DIALOGS ---  
+# ---------------  
+  
+[dialog_new_image]  
+title  =  Créer une nouvelle image
+dimension  =  Dimension
+background  =  Fond
+transparent  =  Transparent
+color  =  Couleur:
+  
+[dialog_open]  
+title  =  Ouvrez une image existante
+images  =  Images
+all_files  =  Tous les fichiers
+  
+[dialog_save]  
+title  =  Enregistrer l'image actuelle
+  
+[dialog_resize]  
+title  =  Redimensionner ...
+dimension  =  Nouvelle dimension
+  
+[dialog_resize_canvas]  
+title  =  Redimensionner toile ...
+dimension  =  Nouvelle dimension
+  
+[dialog_preferences]  
+title  =  Préférences
+item_language  =  Langue
+item_language_language  =  Langue
+item_language_changed_title  =  Paramètres de langue modifiés
+item_language_changed_message  =  Vous devrez fermer Pixs2Pics pour les paramètres de langue à appliquer.
+item_theme  =  Thème
+item_theme_theme  =  Thème
+item_theme_changed_title  =  Configuration des thèmes modifiés
+item_theme_changed_message  =  Vous devrez fermer Pixs2Pics pour les paramètres de thème à appliquer .
+item_matrix_grid  =  Grille matricielle
+item_matrix_grid_dimension  =  Dimension
+  
+[dialog_preferences_language]  
+  
+[dialog_about]  
+title  =  À propos de Pix2Pics
+description  =  Pix2Pics est un pixel art qui sert à toutes fins , de créer des sprites et des tuiles à l'édition d'images simples.
+
+[dialog_exit]
+title = Sortir
+message = There are changes without saving. Are you sure you want to exit?
+  
+# -------------  
+# --- TOOLS ---  
+# -------------  
+  
+[tools]  
+selection  =  Sélection
+pencil  =  Crayon
+brush  =  Brosse
+eraser  =  Gomme
+colorpicker  =  Color Picker
+zoomin  =  Zoom avant
+zoomout  =  Zoom arrière
+fill  =  Remplir
+gradient  =  Pente
+exchange  =  Couleurs de change
+  
+# --------------------  
+# --- DOCK WIDGETS ---  
+# --------------------  
+  
+[dock_widgets]  
+palette = Palette
+tool_properties = Propriétés d'outils
+preview = Avant-première
+  
+# -----------------------  
+# --- TOOL PROPERTIES ---  
+# -----------------------  
+  
+[tool_properties_pencil]  
+size = Taille:
+eraser = Gomme à la place\nde couleur secondaire
+
+[tool_properties_eraser]
+size = Taille:
+
+[tool_properties_gradient]
+horizontal = Horizontal
+vertical = Vertical
+  
+[status]  
+ready = Prêt
+  
+[newimage] 

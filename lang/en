@@ -1,0 +1,191 @@
+[_lang]
+name = English
+
+[pyqx]
+title = pyqx
+
+# ------------
+# --- MENU ---
+# ------------
+
+[menu]
+file = &File
+edit = &Edit
+transform = &Transform
+help = &Help
+view = &View
+
+[menu_file_labels]
+new = &New
+open = &Open
+save = &Save
+saveas = Save &As...
+exit= &Exit
+
+[menu_file_status_tips]
+new = Create a new image
+open = Open an existing image
+save = Save the current image
+saveas = Saves as a new image
+exit = Exit application
+
+[menu_edit_labels]
+undo = &Undo
+redo = &Redo
+selectall = &Select All
+deselect = &Deselect
+invert = &Invert
+cut = Cu&t
+copy = &Copy
+paste = &Paste
+clear = C&lear
+preferences = &Preferences
+
+[menu_edit_status_tips]
+undo = Undo the last action
+redo = Redo the last action
+selectall = Select the whole image
+deselect = Deselect what is selected
+invert = Invert the selection
+cut = Cut the image or a part of it
+copy = Copy the image or a part of it
+paste = Paste an image onto this one
+clear = Clear out the image or a part of it
+preferences = Open the preferences dialog
+
+[menu_view_labels]
+pixel_grid = Pixel grid
+matrix_grid = Matrix grid
+
+[menu_view_status_tips]
+pixel_grid = Toggle pixel grid
+matrix_grid = Toggle matrix grid
+
+[menu_transform_labels]
+flip_hor = Flip horizontally
+flip_ver = Flip vertically
+rotate_cw = Rotate 90º clockwise
+rotate_ccw = Rotate 90º counterclockwise
+rotate_180 = Rotate 180º
+resize = Resize
+resize_canvas = Canvas size...
+
+[menu_transform_status_tips]
+flip_hor = Flip horizontally the image or a part of it
+flip_ver = Flip vertically the image or a part of it
+rotate_cw = Rotate 90º clockwise the image or a part of it
+rotate_ccw = Rotate 90º counterclockwise the image or a part of it
+rotate_180 = Rotate 180º the image or a part of it
+resize = Resize the image or a part of it
+resize_canvas = Resize the canvas
+
+[menu_help_labels]
+contents = &Contents
+about = &About
+
+[menu_help_status_tips]
+contents = Show the help window
+about = About Pixs2Pics...
+
+# ---------------
+# --- DIALOGS ---
+# ---------------
+
+[dialog_new_image]
+title = Create a new image
+dimension = Dimension
+background = Background
+transparent = Transparent
+color = Color:
+
+[dialog_open]
+title = Open an existing image
+images = Images
+all_files = All files
+
+[dialog_save]
+title = Save the current image
+
+[dialog_resize]
+title = Resize...
+dimension = New dimension
+
+[dialog_resize_canvas]
+title = Resize canvas...
+dimension = New dimension
+
+[dialog_preferences]
+title = Preferences
+item_language = Language
+item_language_language = Language
+item_language_changed_title = Language settings changed
+item_language_changed_message = You will have to close Pix2Pics for the language settings to apply.
+item_theme = Theme
+item_theme_theme = Theme
+item_theme_changed_title = Theme settings changed
+item_theme_changed_message = You will have to close Pix2Pics for the theme settings to apply.
+item_matrix_grid = Matrix grid
+item_matrix_grid_dimension = Dimension
+
+[dialog_preferences_language]
+
+[dialog_about]
+title = About Pixs2Pics
+description = Pixs2Pics is a Pixel Art software that serves all purposes, from creating sprites and tiles to editing simple images.
+
+[dialog_close_tab]
+title = Close
+message = There are changes without saving. Are you sure you want to close this image?
+
+[dialog_exit]
+title = Exit
+message = There are changes without saving. Are you sure you want to exit?
+
+# -------------
+# --- TOOLS ---
+# -------------
+
+[tools]
+selection = Selection
+magicwand = Magic Wand
+pencil = Pencil
+brush = Brush
+eraser = Eraser
+colorpicker = Color Picker
+zoomin = Zoom In
+zoomout = Zoom Out
+fill = Fill
+gradient = Gradient
+exchange = Exchange colors
+
+# --------------------
+# --- DOCK WIDGETS ---
+# --------------------
+
+[dock_widgets]
+palette = Palette
+tool_properties = Tool properties
+preview = Preview
+
+# -----------------------
+# --- TOOL PROPERTIES ---
+# -----------------------
+
+[tool_properties_selection]
+transparent = Transparent Selection
+
+[tool_properties_pencil]
+size = Size:
+eraser = Use eraser instead\nof secondary color
+
+[tool_properties_eraser]
+size = Size:
+
+[tool_properties_gradient]
+horizontal = Horizontal
+vertical = Vertical
+
+[status]
+ready = Ready
+
+[newimage]
