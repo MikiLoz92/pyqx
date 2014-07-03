@@ -1,5 +1,6 @@
 defaults.cfg
 palette.cfg
+pyqx.sublime-project
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
