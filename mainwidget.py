@@ -3,13 +3,13 @@
 
 import gc, sys
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 from scrollarea import ScrollArea
 
 
-class MainWidget(QtGui.QTabWidget):
+class MainWidget(QtWidgets.QTabWidget):
 
 	def __init__(self, context, signals, Parent=None):
 
@@ -49,7 +49,7 @@ class MainWidget(QtGui.QTabWidget):
 
 	def closeTab(self, index):
 
-		print index
+		print(index)
 		if self.context.getImagePos(index).modified:
 			if self.confirmExit(index): self.removeTab(index)
 			return
@@ -69,15 +69,15 @@ class MainWidget(QtGui.QTabWidget):
 	def confirmExit(self, index):
 
 		self.setCurrentIndex(index)
-		reply = QtGui.QMessageBox.warning(self, self.context.getText("dialog_close_tab", "title"),
+		reply = QtWidgets.QMessageBox.warning(self, self.context.getText("dialog_close_tab", "title"),
 			self.context.getText("dialog_close_tab", "message"),
-			QtGui.QMessageBox.Save | QtGui.QMessageBox.Discard | QtGui.QMessageBox.Cancel,
-			QtGui.QMessageBox.Save)
-		if reply == QtGui.QMessageBox.Discard:
+			QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Discard | QtWidgets.QMessageBox.Cancel,
+			QtWidgets.QMessageBox.Save)
+		if reply == QtWidgets.QMessageBox.Discard:
 			return True
-		elif reply == QtGui.QMessageBox.Cancel:
+		elif reply == QtWidgets.QMessageBox.Cancel:
 			return False
-		elif reply == QtGui.QMessageBox.Save:
+		elif reply == QtWidgets.QMessageBox.Save:
 			self.parent.saveFile()
 			return True
 
@@ -86,7 +86,7 @@ class MainWidget(QtGui.QTabWidget):
 		self.setTabIcon(self.currentIndex(), QtGui.QIcon(QtGui.QPixmap.fromImage(self.context.currentQImage())))
 
 
-class TabBar(QtGui.QTabBar):
+class TabBar(QtWidgets.QTabBar):
 
 	middleClicked = QtCore.pyqtSignal(int)
 	toBeClosed = 0

@@ -2,10 +2,10 @@
 #coding: utf-8
 
 import os
-import ConfigParser
+from configparser import ConfigParser, NoSectionError, NoOptionError
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 from image import Image
 from translation import Language, TDatabase
@@ -36,7 +36,7 @@ class Context:
 		self.theme = "algae"
 		self.currentTool = 0
 
-		self.clipboard = QtGui.QApplication.clipboard()
+		self.clipboard = QtWidgets.QApplication.clipboard()
 
 		self.pencilCur = QtGui.QCursor(QtGui.QPixmap("images/cursors/penicon.png"), 2, 17)
 		self.colorPickerCur = QtGui.QCursor(QtGui.QPixmap("images/cursors/droppericon.png"), 2, 17)
@@ -52,7 +52,7 @@ class Context:
 		self.images.append(Image.newImage(width, height, bg, self))
 		self.image = len(self.images) - 1
 
-		print "newImage"
+		print("newImage")
 
 		self.signals.newImage.emit()
 
@@ -127,7 +127,7 @@ class Context:
 
 	def changeCurrentTool(self, index):
 
-		print "Emitting updateTool"
+		print("Emitting updateTool")
 		self.currentTool = index
 		self.signals.updateTool.emit(index)
 
@@ -152,18 +152,18 @@ class Context:
 
 	def getText(self, sect, ident): # Get some text in the current language
 
-		return self.tdatabase.getText(self.lang, sect, ident).decode("utf-8").replace("\\n", "\n")
+		return self.tdatabase.getText(self.lang, sect, ident).replace("\\n", "\n")
 
 	def getTextInLang(self, lang, sect, ident): # Get some text in a specific language
 
-		return self.tdatabase.getText(lang, sect, ident).decode("utf-8")
+		return self.tdatabase.getText(lang, sect, ident)
 
 	def setDefault(self, sect, ident, value):
 
 		try:
 			self.cp.set(sect, ident, value)
-		except ConfigParser.NoSectionError:
-			print "Trying to set \"" + ident + "\" to \"" + str(value) + "\" on section \"" + sect + "\", but given section does not exist. Creating section."
+		except NoSectionError:
+			print("Trying to set \"" + ident + "\" to \"" + str(value) + "\" on section \"" + sect + "\", but given section does not exist. Creating section.")
 			self.cp.add_section(sect)
 			self.cp.set(sect, ident, value)
 
@@ -175,11 +175,11 @@ class Context:
 
 		try:
 			return self.cp.get(sect, ident)
-		except ConfigParser.NoSectionError:
-			print "Trying to get value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value."
+		except NoSectionError:
+			print("Trying to get value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value.")
 			return default
-		except ConfigParser.NoOptionError:
-			print "Trying to get value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value."
+		except NoOptionError:
+			print("Trying to get value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value.")
 			return default
 
 	def getBoolDefault(self, sect, ident, default):
@@ -187,12 +187,12 @@ class Context:
 		try:
 			return self.cp.getboolean(sect, ident)
 		except ValueError:
-			print "Trying to get boolean value from option \"" + ident + "\" on section \"" + sect + "\", but given option value is not boolean."
-		except ConfigParser.NoSectionError:
-			print "Trying to get boolean value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value."
+			print("Trying to get boolean value from option \"" + ident + "\" on section \"" + sect + "\", but given option value is not boolean.")
+		except NoSectionError:
+			print("Trying to get boolean value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value.")
 			return default
-		except ConfigParser.NoOptionError:
-			print "Trying to get boolean value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value."
+		except NoOptionError:
+			print("Trying to get boolean value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value.")
 			return default
 
 	def getIntDefault(self, sect, ident, default):
@@ -200,12 +200,12 @@ class Context:
 		try:
 			return self.cp.getint(sect, ident)
 		except ValueError:
-			print "Trying to get integer value from option \"" + ident + "\" on section \"" + sect + "\", but given option value is not an integer."
-		except ConfigParser.NoSectionError:
-			print "Trying to get integer value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value."
+			print("Trying to get integer value from option \"" + ident + "\" on section \"" + sect + "\", but given option value is not an integer.")
+		except NoSectionError:
+			print("Trying to get integer value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value.")
 			return default
-		except ConfigParser.NoOptionError:
-			print "Trying to get integer value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value."
+		except NoOptionError:
+			print("Trying to get integer value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value.")
 			return default
 
 	def getFloatDefault(self, sect, ident, default):
@@ -213,17 +213,17 @@ class Context:
 		try:
 			return self.cp.getfloat(sect, ident)
 		except ValueError:
-			print "Trying to get float value from option \"" + ident + "\" on section \"" + sect + "\", but given option value is not a floating point number."
-		except ConfigParser.NoSectionError:
-			print "Trying to get float value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value."
+			print("Trying to get float value from option \"" + ident + "\" on section \"" + sect + "\", but given option value is not a floating point number.")
+		except NoSectionError:
+			print("Trying to get float value from option \"" + ident + "\" on section \"" + sect + "\", but no section with that name exists. Returning default value.")
 			return default
-		except ConfigParser.NoOptionError:
-			print "Trying to get float value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value."
+		except NoOptionError:
+			print("Trying to get float value from option \"" + ident + "\" on section \"" + sect + "\", but specified option does not exist within that section. Returning default value.")
 			return default
 
 	def loadDefaults(self):
 
-		self.cp = ConfigParser.ConfigParser()
+		self.cp = ConfigParser()
 		self.cp.read("defaults.cfg")
 
 		self.loadDefaultsPalette()
@@ -240,7 +240,7 @@ class Context:
 		try:
 			f = open("palette.cfg", 'r')
 		except IOError:
-			print "Cannot open palette.cfg, falling back to default palette."
+			print("Cannot open palette.cfg, falling back to default palette.")
 			self.palette = self.defaultPalette
 			return
 

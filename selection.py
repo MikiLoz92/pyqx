@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtCore import Qt
 
 
-class Selection(QtGui.QRubberBand):
+class Selection(QtWidgets.QRubberBand):
 
 	def __init__(self, origin, context, Parent=None):
 
-		super(Selection, self).__init__(QtGui.QRubberBand.Rectangle, Parent)
+		super(Selection, self).__init__(QtWidgets.QRubberBand.Rectangle, Parent)
 
 		self.context = context
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 
 class Image:
@@ -26,9 +26,9 @@ class Image:
 		image = QtGui.QImage(fileName).convertToFormat(QtGui.QImage.Format_ARGB32_Premultiplied)
 
 		if image.hasAlphaChannel():
-			bgColor = QtGui.QColor(0,0,0,0)
+			bgColor = QtWidgets.QColor(0,0,0,0)
 		else:
-			bgColor = QtGui.QColor(255,255,255)
+			bgColor = QtWidgets.QColor(255,255,255)
 
 		return cls(fileName, image, bgColor, context)
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 
 class Signals(QtCore.QObject):
 	"""

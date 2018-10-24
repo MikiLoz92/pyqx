@@ -3,11 +3,11 @@
 
 import os
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 ## Vista/View
-class NewFileDialog(QtGui.QDialog):
+class NewFileDialog(QtWidgets.QDialog):
 	"""
 	La ventanita que se abre cuando queremos crear un archivo nuevo.
 	"""
@@ -18,23 +18,23 @@ class NewFileDialog(QtGui.QDialog):
 		self.context = context
 		self.parent = Parent
 
-		dimensionGroup = QtGui.QGroupBox(self.context.getText("dialog_new_image", "dimension"))
-		dimensionLayout = QtGui.QVBoxLayout()
+		dimensionGroup = QtWidgets.QGroupBox(self.context.getText("dialog_new_image", "dimension"))
+		dimensionLayout = QtWidgets.QVBoxLayout()
 
-		self.width = QtGui.QSpinBox(dimensionGroup)
+		self.width = QtWidgets.QSpinBox(dimensionGroup)
 		self.width.setMinimum(1)
 		self.width.setMaximum(4096)
 		self.width.setValue(self.context.getIntDefault("new", "width", 32))
-		self.height = QtGui.QSpinBox(dimensionGroup)
+		self.height = QtWidgets.QSpinBox(dimensionGroup)
 		self.height.setMinimum(1)
 		self.height.setMaximum(4096)
 		self.height.setValue(self.context.getIntDefault("new", "height", 32))
 
-		clipboard = QtGui.QApplication.clipboard()
-		print "Accesses clipboard"
+		clipboard = QtWidgets.QApplication.clipboard()
+		print("Accesses clipboard")
 		im = clipboard.image()
 		if not im.isNull():
-			print "Image not null"
+			print("Image not null")
 			self.width.setValue(im.width())
 			self.height.setValue(im.height())
 		
@@ -42,18 +42,18 @@ class NewFileDialog(QtGui.QDialog):
 		dimensionLayout.addWidget(self.height)
 		dimensionGroup.setLayout(dimensionLayout)
 
-		backgroundGroup = QtGui.QGroupBox(self.context.getText("dialog_new_image", "background"))
-		backgroundLayout = QtGui.QVBoxLayout()
-		self.r1 = QtGui.QRadioButton(self.context.getText("dialog_new_image", "transparent"))
+		backgroundGroup = QtWidgets.QGroupBox(self.context.getText("dialog_new_image", "background"))
+		backgroundLayout = QtWidgets.QVBoxLayout()
+		self.r1 = QtWidgets.QRadioButton(self.context.getText("dialog_new_image", "transparent"))
 		self.r1.setChecked(True)
-		self.r2 = QtGui.QRadioButton(self.context.getText("dialog_new_image", "color"))
-		self.cButton = QtGui.QPushButton()
+		self.r2 = QtWidgets.QRadioButton(self.context.getText("dialog_new_image", "color"))
+		self.cButton = QtWidgets.QPushButton()
 		self.cButton.clicked.connect(self.getColor)
-		self.cButton.setSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+		self.cButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
 		self.color = QtGui.QColor(255,255,255)
 		self.cButton.setStyleSheet("background-color: " + self.color.name() +";")
 		self.cButton.setText(self.color.name())
-		colorLayout = QtGui.QHBoxLayout()
+		colorLayout = QtWidgets.QHBoxLayout()
 		colorLayout.addWidget(self.r2)
 		colorLayout.addWidget(self.cButton)
 		backgroundLayout.addWidget(self.r1)
@@ -61,11 +61,11 @@ class NewFileDialog(QtGui.QDialog):
 		backgroundLayout.addLayout(colorLayout)
 		backgroundGroup.setLayout(backgroundLayout)
 
-		buttonBox = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel)
+		buttonBox = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel)
 		#buttonBox.accepted.connect(self.accept)
 		buttonBox.accepted.connect(self.accept)
 		buttonBox.rejected.connect(self.reject)
-		mainLayout = QtGui.QVBoxLayout()
+		mainLayout = QtWidgets.QVBoxLayout()
 		mainLayout.addWidget(dimensionGroup)
 		mainLayout.addWidget(backgroundGroup)
 		mainLayout.addWidget(buttonBox)
@@ -79,7 +79,7 @@ class NewFileDialog(QtGui.QDialog):
 
 	def getColor(self):
 
-		self.color = QtGui.QColorDialog.getColor()
+		self.color = QtWidgets.QColorDialog.getColor()
 		if self.color.isValid(): 
 			self.r2.setChecked(True)
 			self.cButton.setStyleSheet("background-color: " + self.color.name() +";")
@@ -96,7 +96,7 @@ class NewFileDialog(QtGui.QDialog):
 		super(NewFileDialog, self).accept()
 
 
-class ResizeImageDialog (QtGui.QDialog):
+class ResizeImageDialog (QtWidgets.QDialog):
 
 	def __init__(self, context, Parent=None):
 
@@ -105,14 +105,14 @@ class ResizeImageDialog (QtGui.QDialog):
 		self.context = context
 		self.parent = Parent
 
-		dimensionGroup = QtGui.QGroupBox(self.context.getText("dialog_resize", "dimension"))
-		dimensionLayout = QtGui.QVBoxLayout()
+		dimensionGroup = QtWidgets.QGroupBox(self.context.getText("dialog_resize", "dimension"))
+		dimensionLayout = QtWidgets.QVBoxLayout()
 
-		self.width = QtGui.QSpinBox(dimensionGroup)
+		self.width = QtWidgets.QSpinBox(dimensionGroup)
 		self.width.setMinimum(1)
 		self.width.setMaximum(4096)
 		self.width.setValue(self.context.currentQImage().width())
-		self.height = QtGui.QSpinBox(dimensionGroup)
+		self.height = QtWidgets.QSpinBox(dimensionGroup)
 		self.height.setMinimum(1)
 		self.height.setMaximum(4096)
 		self.height.setValue(self.context.currentQImage().height())
@@ -121,11 +121,11 @@ class ResizeImageDialog (QtGui.QDialog):
 		dimensionLayout.addWidget(self.height)
 		dimensionGroup.setLayout(dimensionLayout)
 		
-		buttonBox = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel)
+		buttonBox = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel)
 		buttonBox.accepted.connect(self.accept)
 		buttonBox.rejected.connect(self.reject)
 
-		mainLayout = QtGui.QVBoxLayout()
+		mainLayout = QtWidgets.QVBoxLayout()
 		mainLayout.addWidget(dimensionGroup)
 		mainLayout.addWidget(buttonBox)
 
@@ -139,7 +139,7 @@ class ResizeImageDialog (QtGui.QDialog):
 		super(ResizeImageDialog,self).accept()
 
 
-class ResizeCanvasDialog (QtGui.QDialog):
+class ResizeCanvasDialog (QtWidgets.QDialog):
 
 	def __init__(self, context, Parent=None):
 
@@ -148,14 +148,14 @@ class ResizeCanvasDialog (QtGui.QDialog):
 		self.context = context
 		self.parent = Parent
 
-		dimensionGroup = QtGui.QGroupBox(self.context.getText("dialog_resize_canvas", "dimension"))
-		dimensionLayout = QtGui.QVBoxLayout()
+		dimensionGroup = QtWidgets.QGroupBox(self.context.getText("dialog_resize_canvas", "dimension"))
+		dimensionLayout = QtWidgets.QVBoxLayout()
 
-		self.width = QtGui.QSpinBox(dimensionGroup)
+		self.width = QtWidgets.QSpinBox(dimensionGroup)
 		self.width.setMinimum(1)
 		self.width.setMaximum(1024)
 		self.width.setValue(self.context.currentQImage().width())
-		self.height = QtGui.QSpinBox(dimensionGroup)
+		self.height = QtWidgets.QSpinBox(dimensionGroup)
 		self.height.setMinimum(1)
 		self.height.setMaximum(1024)
 		self.height.setValue(self.context.currentQImage().height())
@@ -164,11 +164,11 @@ class ResizeCanvasDialog (QtGui.QDialog):
 		dimensionLayout.addWidget(self.height)
 		dimensionGroup.setLayout(dimensionLayout)
 		
-		buttonBox = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel)
+		buttonBox = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel)
 		buttonBox.accepted.connect(self.accept)
 		buttonBox.rejected.connect(self.reject)
 
-		mainLayout = QtGui.QVBoxLayout()
+		mainLayout = QtWidgets.QVBoxLayout()
 		mainLayout.addWidget(dimensionGroup)
 		mainLayout.addWidget(buttonBox)
 
@@ -182,7 +182,7 @@ class ResizeCanvasDialog (QtGui.QDialog):
 		super(ResizeCanvasDialog,self).accept()
 
 
-class Preferences (QtGui.QDialog):
+class Preferences (QtWidgets.QDialog):
 
 	def  __init__(self, context, signals, Parent=None):
 
@@ -195,12 +195,12 @@ class Preferences (QtGui.QDialog):
 		# con sólo llamar a un método. En nuestro caso, conectamos el signal que emite el QListWidget al cambiar de sección
 		# con el método self.changeCurrentView, que cambia la página del QStackedWidget.
 
-		self.view = QtGui.QStackedWidget()
+		self.view = QtWidgets.QStackedWidget()
 		self.view.addWidget(self.createLanguageView())
 		self.view.addWidget(self.createUICustomizationView())
 		self.view.addWidget(self.createMatrixGridView())
 
-		self.preferences = QtGui.QListWidget()
+		self.preferences = QtWidgets.QListWidget()
 		self.preferences.addItem(self.context.getText("dialog_preferences", "item_language"))
 		self.preferences.addItem(self.context.getText("dialog_preferences", "item_theme"))
 		self.preferences.addItem(self.context.getText("dialog_preferences", "item_matrix_grid"))
@@ -209,15 +209,15 @@ class Preferences (QtGui.QDialog):
 		self.preferences.setFixedWidth(self.preferences.sizeHintForColumn(0) + 24)
 		#self.view.setFixedWidth(200)
 
-		self.buttonBox = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel)
+		self.buttonBox = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel)
 		self.buttonBox.accepted.connect(self.accept)
 		self.buttonBox.rejected.connect(self.reject)
 
-		self.hbox = QtGui.QHBoxLayout()
+		self.hbox = QtWidgets.QHBoxLayout()
 		self.hbox.addWidget(self.preferences)
 		self.hbox.addWidget(self.view)
 
-		self.vbox = QtGui.QVBoxLayout()
+		self.vbox = QtWidgets.QVBoxLayout()
 		self.vbox.addLayout(self.hbox)
 		self.vbox.addWidget(self.buttonBox)
 
@@ -234,13 +234,13 @@ class Preferences (QtGui.QDialog):
 
 		# Widget de ejemplo
 
-		g = QtGui.QGroupBox(self.context.getText("dialog_preferences", "item_language_language"))
+		g = QtWidgets.QGroupBox(self.context.getText("dialog_preferences", "item_language_language"))
 
-		w = QtGui.QWidget()
+		w = QtWidgets.QWidget()
 
-		vbox = QtGui.QVBoxLayout()
+		vbox = QtWidgets.QVBoxLayout()
 
-		self.language = QtGui.QComboBox()
+		self.language = QtWidgets.QComboBox()
 		self.langCodes = []
 
 		j = 0
@@ -264,12 +264,12 @@ class Preferences (QtGui.QDialog):
 
 	def createUICustomizationView(self):
 
-		g = QtGui.QGroupBox(self.context.getText("dialog_preferences", "item_theme"))
-		w = QtGui.QWidget()
-		vbox = QtGui.QVBoxLayout()
-		hbox = QtGui.QHBoxLayout()
+		g = QtWidgets.QGroupBox(self.context.getText("dialog_preferences", "item_theme"))
+		w = QtWidgets.QWidget()
+		vbox = QtWidgets.QVBoxLayout()
+		hbox = QtWidgets.QHBoxLayout()
 
-		self.theme = QtGui.QComboBox()
+		self.theme = QtWidgets.QComboBox()
 
 		j = 0
 		self.themeDirs = [d for d in os.listdir("themes") if os.path.isdir(os.path.join("themes", d))]
@@ -278,10 +278,10 @@ class Preferences (QtGui.QDialog):
 			if self.context.theme == i:
 				self.theme.setCurrentIndex(j)
 			j += 1
-		self.theme.setSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+		self.theme.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
 		#self.theme.setFixedWidth(self.theme.sizeHint().width())
 
-		hbox.addWidget(QtGui.QLabel(self.context.getText("dialog_preferences", "item_theme_theme")))
+		hbox.addWidget(QtWidgets.QLabel(self.context.getText("dialog_preferences", "item_theme_theme")))
 		hbox.addWidget(self.theme)
 		hbox.setAlignment(Qt.AlignLeft)
 		vbox.addLayout(hbox)
@@ -296,15 +296,15 @@ class Preferences (QtGui.QDialog):
 
 	def createMatrixGridView(self):
 
-		g = QtGui.QGroupBox(self.context.getText("dialog_preferences", "item_matrix_grid_dimension"))
+		g = QtWidgets.QGroupBox(self.context.getText("dialog_preferences", "item_matrix_grid_dimension"))
 
-		vbox = QtGui.QVBoxLayout()
+		vbox = QtWidgets.QVBoxLayout()
 		
-		self.matrixGridWidth = QtGui.QSpinBox()
+		self.matrixGridWidth = QtWidgets.QSpinBox()
 		self.matrixGridWidth.setMinimum(1)
 		self.matrixGridWidth.setMaximum(1024)
 		self.matrixGridWidth.setValue(self.context.matrixGridWidth)
-		self.matrixGridHeight = QtGui.QSpinBox()
+		self.matrixGridHeight = QtWidgets.QSpinBox()
 		self.matrixGridHeight.setMinimum(1)
 		self.matrixGridHeight.setMaximum(1024)
 		self.matrixGridHeight.setValue(self.context.matrixGridHeight)
@@ -321,7 +321,7 @@ class Preferences (QtGui.QDialog):
 	def accept(self):
 
 		if self.langCodes[self.language.currentIndex()] != self.context.lang:
-			QtGui.QMessageBox.information(self, self.context.getText("dialog_preferences", "item_language_changed_title"), self.context.getText("dialog_preferences", "item_language_changed_message"))
+			QtWidgets.QMessageBox.information(self, self.context.getText("dialog_preferences", "item_language_changed_title"), self.context.getText("dialog_preferences", "item_language_changed_message"))
 		self.context.setDefault("language", "lang", self.langCodes[self.language.currentIndex()])
 
 		self.context.matrixGridWidth = self.matrixGridWidth.value()
@@ -330,7 +330,7 @@ class Preferences (QtGui.QDialog):
 		self.context.setDefault("grid", "matrix_grid_height", self.context.matrixGridHeight)
 
 		if self.context.getDefault("theme", "theme", "aquamarine") != self.themeDirs[self.theme.currentIndex()]:
-			QtGui.QMessageBox.information(self, self.context.getText("dialog_preferences", "item_theme_changed_title"), self.context.getText("dialog_preferences", "item_theme_changed_message"))
+			QtWidgets.QMessageBox.information(self, self.context.getText("dialog_preferences", "item_theme_changed_title"), self.context.getText("dialog_preferences", "item_theme_changed_message"))
 		self.context.setDefault("theme", "theme", self.themeDirs[self.theme.currentIndex()])
 
 		self.signals.updateCanvas.emit()

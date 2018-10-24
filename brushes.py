@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 
 def createBrushes():
@@ -76,4 +76,4 @@ def matrixToString(m):
 
 def printMatrix(m):
 	for row in m:
-		print " ".join([str(x) for x in row])
+		print(" ".join([str(x) for x in row]))

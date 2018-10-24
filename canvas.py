@@ -3,14 +3,14 @@
 
 import sys
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 import names as Pixeler
 from selection import Selection
 
 
-class Canvas(QtGui.QLabel):
+class Canvas(QtWidgets.QLabel):
 	"""
 	La clase Canvas representa el lienzo donde pintaremos.
 	Se expande de tamaño a medida que aumentamos el zoom.
@@ -98,7 +98,7 @@ class Canvas(QtGui.QLabel):
 
 		mimeData = event.mimeData()
 		if mimeData.hasImage() and not mimeData.imageData().isNull():
-			self.image().image =  QtGui.QImage(mimeData.imageData())
+			self.image().image =  QtWidgets.QImage(mimeData.imageData())
 			self.signals.updateCanvas.emit()
 			self.signals.resizeCanvas.emit()
 		event.acceptProposedAction()
@@ -255,7 +255,7 @@ class Canvas(QtGui.QLabel):
 		elif self.context.currentTool == Pixeler.Tools.Eraser: m = self.context.circles[self.context.eraserSize-1]
 
 		painter = QtGui.QPainter(self)
-		#painter.setCompositionMode(QtGui.QPainter.CompositionMode_Source)
+		#painter.setCompositionMode(QtWidgets.QPainter.CompositionMode_Source)
 		pen = QtGui.QPen(QtGui.QColor(0,0,0,96))
 		#pen.setStyle(Qt.DotLine)
 		painter.setPen(pen)
@@ -295,22 +295,22 @@ class Canvas(QtGui.QLabel):
 		if self.context.currentTool == Pixeler.Tools.Selection and event.button() == QtCore.Qt.LeftButton:
 			
 			if self.selecting:
-				print "Selection made starting at (" + str(self.image().selection.origin.x()) + ", " + str(self.image().selection.origin.y()) + ") and ending at (" + str(x) + ", " + str(y) + ") (both included)"
-				print self.image().selection
+				print("Selection made starting at (" + str(self.image().selection.origin.x()) + ", " + str(self.image().selection.origin.y()) + ") and ending at (" + str(x) + ", " + str(y) + ") (both included)")
+				print(self.image().selection)
 				self.image().selection.originTopLeft = QtCore.QPoint(self.image().selection.rect.x(), self.image().selection.rect.y())
 				self.image().selection.finished = True
 				self.image().selection.image = self.context.currentQImage().copy(self.image().selection.rect)
 				self.makeSelectionTransparent(self.context.transparentSelection)
-				print self.image().selection.image
+				print(self.image().selection.image)
 				painter = QtGui.QPainter(self.context.currentQImage())
 				painter.setCompositionMode(QtGui.QPainter.CompositionMode_Source)
 				painter.fillRect(self.image().selection.rect, self.image().bgColor)
 			else:
 				if self.image().selection != None and self.image().selection.finished:
-					print "Moved selection"
+					print("Moved selection")
 					pass
 				else:
-					print "No selection was made"
+					print("No selection was made")
 					self.image().selection = None
 			self.selecting = False
 
@@ -335,13 +335,13 @@ class Canvas(QtGui.QLabel):
 				x2,y2 = x,y
 				xm,ym = max(x1,x2),max(y1,y2)
 				if xm == x2 : 
-					lx = range(x1,x2+1)
+					lx = range(int(x1),int(x2+1))
 				else:
-					lx = range(x1,x2-1,-1)
+					lx = range(int(x1),int(x2-1),-1)
 				if ym == y2:
-					ly = range(y1,y2+1)
+					ly = range(int(y1),int(y2+1))
 				else:
-					ly = range(y1,y2-1,-1)
+					ly = range(int(y1),int(y2-1),-1)
 				self.context.gradient.originTopLeft = QtCore.QPoint(self.context.gradient.rect.x(), self.context.gradient.rect.y())
 				self.context.gradient.finished = True
 				self.context.gradient.image = self.context.currentQImage().copy(self.context.gradient.rect)
@@ -489,7 +489,7 @@ class Canvas(QtGui.QLabel):
 	def applySelection(self):
 
 		if self.image().selection != None:
-			print "Applying selection"
+			print("Applying selection")
 			painter = QtGui.QPainter(self.image().image)
 			painter.drawImage(self.image().selection.rect.topLeft(), self.image().selection.image)
 			if self.image().selection.originTopLeft != self.image().selection.rect.topLeft():
@@ -501,7 +501,7 @@ class Canvas(QtGui.QLabel):
 	def cutImage(self):
 
 		if self.context.imagePos == self.index: # Cortar sólo si este Canvas es el actual
-			clipboard = QtGui.QApplication.clipboard()
+			clipboard = QtWidgets.QApplication.clipboard()
 			if self.image().selection != None:
 				clipboard.setImage(self.image().selection.image)
 				self.image().selection.hide()
@@ -512,18 +512,18 @@ class Canvas(QtGui.QLabel):
 	def copyImage(self):
 
 		if self.context.imagePos == self.index: # Copiar sólo si este Canvas es el actual
-			clipboard = QtGui.QApplication.clipboard()
+			clipboard = QtWidgets.QApplication.clipboard()
 			if self.image().selection != None:
 				clipboard.setImage(self.image().selection.image)
 
 	def pasteImage(self):
 
-		print "imagePos: ", self.context.imagePos, ", self.index: ", self.index
+		print("imagePos: ", self.context.imagePos, ", self.index: ", self.index)
 		if self.context.imagePos == self.index: # Pegar sólo si este Canvas es el actual
-			print "Pasting image"
+			print("Pasting image")
 			self.signals.autoUpdateTool.emit(0)
 			self.applySelection()
-			image = QtGui.QApplication.clipboard().image()
+			image = QtWidgets.QApplication.clipboard().image()
 			self.image().selection = Selection(QtCore.QPoint(0,0), self.context, self)
 			self.image().selection.setGeometry(0, 0, image.width(), image.height())
 			self.image().selection.image = image
@@ -533,7 +533,7 @@ class Canvas(QtGui.QLabel):
 
 	def clearImage(self):
 
-		print "Borrando"
+		print("Borrando")
 		if self.context.imagePos == self.index: # Eliminar sólo si este Canvas es el actual
 
 			if self.image().selection != None:

@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtCore import Qt
 
 import names as Pixeler
 
 
-class SizeLabel (QtGui.QLabel):
+class SizeLabel (QtWidgets.QLabel):
 
 	def setValue(self, value):
 
 		self.setText(str(value))
 
 
-class ToolProperties (QtGui.QDockWidget):
+class ToolProperties (QtWidgets.QDockWidget):
 
 	def __init__(self, title, context, signals, Parent=None):
 
@@ -24,7 +24,7 @@ class ToolProperties (QtGui.QDockWidget):
 		self.signals = signals
 		self.parent = Parent
 		self.setAllowedAreas(Qt.RightDockWidgetArea)
-		self.setFeatures(QtGui.QDockWidget.NoDockWidgetFeatures)
+		self.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
 
 		# Llista de widgets (configuració de cada eina del programa)
 		self.widgets = self.createWidgets()
@@ -38,24 +38,24 @@ class ToolProperties (QtGui.QDockWidget):
 		l = []
 
 		l.append(self.createSelectionWidget())
-		l.append(QtGui.QWidget())
+		l.append(QtWidgets.QWidget())
 		l.append(self.createPencilWidget())
 		l.append(self.createEraserWidget())
-		l.append(QtGui.QWidget())
-		l.append(QtGui.QWidget())
+		l.append(QtWidgets.QWidget())
+		l.append(QtWidgets.QWidget())
 		l.append(self.createGradientWidget())
-		l.append(QtGui.QWidget())
+		l.append(QtWidgets.QWidget())
 
 		return l
 
 	def createSelectionWidget(self):
 
-		w = QtGui.QWidget()
+		w = QtWidgets.QWidget()
 		w.setObjectName("ToolProperties")
-		w.setSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)
-		vbox = QtGui.QVBoxLayout()
+		w.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+		vbox = QtWidgets.QVBoxLayout()
 
-		transparent = QtGui.QCheckBox(self.context.getText("tool_properties_selection", "transparent"), self)
+		transparent = QtWidgets.QCheckBox(self.context.getText("tool_properties_selection", "transparent"), self)
 		transparent.setChecked(self.context.transparentSelection)
 		transparent.toggled.connect(self.context.setTransparentSelection)
 
@@ -67,15 +67,15 @@ class ToolProperties (QtGui.QDockWidget):
 
 	def createPencilWidget(self):
 
-		w = QtGui.QWidget()
+		w = QtWidgets.QWidget()
 		w.setObjectName("ToolProperties")
-		w.setSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)
-		vbox = QtGui.QVBoxLayout()
+		w.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+		vbox = QtWidgets.QVBoxLayout()
 
-		hbox1 = QtGui.QHBoxLayout()
+		hbox1 = QtWidgets.QHBoxLayout()
 
-		pencilSizeLabel = QtGui.QLabel(self.context.getText("tool_properties_pencil", "size"))
-		slider = QtGui.QSlider(QtCore.Qt.Horizontal, self)
+		pencilSizeLabel = QtWidgets.QLabel(self.context.getText("tool_properties_pencil", "size"))
+		slider = QtWidgets.QSlider(QtCore.Qt.Horizontal, self)
 		slider.setValue(self.context.pencilSize)
 		self.pencilSize = SizeLabel(str(self.context.pencilSize))
 
@@ -92,18 +92,18 @@ class ToolProperties (QtGui.QDockWidget):
 		hbox1.addWidget(self.pencilSize)
 
 		"""
-		hbox2 = QtGui.QHBoxLayout()
-		hbox2.addWidget(QtGui.QLabel("Alpha:"))
-		alpha = QtGui.QSpinBox()
+		hbox2 = QtWidgets.QHBoxLayout()
+		hbox2.addWidget(QtWidgets.QLabel("Alpha:"))
+		alpha = QtWidgets.QSpinBox()
 		alpha.setMinimum(0)
 		alpha.setMaximum(255)
 		alpha.setValue(255)
 		alpha.valueChanged.connect(self.setPencilAlpha)
-		alpha.setSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
+		alpha.setSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Preferred)
 		hbox2.addWidget(alpha)
 		"""
-		hbox2 = QtGui.QHBoxLayout()
-		eraser = QtGui.QCheckBox(self.context.getText("tool_properties_pencil", "eraser"), self)
+		hbox2 = QtWidgets.QHBoxLayout()
+		eraser = QtWidgets.QCheckBox(self.context.getText("tool_properties_pencil", "eraser"), self)
 		eraser.setChecked(self.context.secondaryColorEraser)
 		eraser.toggled.connect(self.toggleSecondaryColorEraser)
 		hbox2.addWidget(eraser)
@@ -131,14 +131,14 @@ class ToolProperties (QtGui.QDockWidget):
 
 	def createEraserWidget(self):
 
-		w = QtGui.QWidget()
-		w.setSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)
-		vbox = QtGui.QVBoxLayout()
+		w = QtWidgets.QWidget()
+		w.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+		vbox = QtWidgets.QVBoxLayout()
 
-		hbox = QtGui.QHBoxLayout()
+		hbox = QtWidgets.QHBoxLayout()
 
-		eraserSizeLabel = QtGui.QLabel(self.context.getText("tool_properties_eraser", "size"))
-		slider = QtGui.QSlider(QtCore.Qt.Horizontal, self)
+		eraserSizeLabel = QtWidgets.QLabel(self.context.getText("tool_properties_eraser", "size"))
+		slider = QtWidgets.QSlider(QtCore.Qt.Horizontal, self)
 		slider.setValue(self.context.eraserSize)
 		self.eraserSize = SizeLabel(str(self.context.eraserSize))
 
@@ -168,22 +168,22 @@ class ToolProperties (QtGui.QDockWidget):
 
 	def createGradientWidget(self):
 
-		self.v = QtGui.QVBoxLayout()
+		self.v = QtWidgets.QVBoxLayout()
 
-		v2 = QtGui.QVBoxLayout()
+		v2 = QtWidgets.QVBoxLayout()
 
-		self.btn1 = QtGui.QRadioButton(self.context.getText("tool_properties_gradient", "horizontal"))
-		self.btn2 = QtGui.QRadioButton(self.context.getText("tool_properties_gradient", "vertical"))
+		self.btn1 = QtWidgets.QRadioButton(self.context.getText("tool_properties_gradient", "horizontal"))
+		self.btn2 = QtWidgets.QRadioButton(self.context.getText("tool_properties_gradient", "vertical"))
 		self.btn1.setChecked(True)
 
 		self.btn1.clicked.connect( lambda : self.changeDegDir('H') )
 		self.btn2.clicked.connect( lambda : self.changeDegDir('V') )
 
-		h = QtGui.QHBoxLayout()
+		h = QtWidgets.QHBoxLayout()
 
-		self.label = QtGui.QLabel("Transparencia:", self)
+		self.label = QtWidgets.QLabel("Transparencia:", self)
 
-		self.AlphaSpin = QtGui.QSpinBox(self) 
+		self.AlphaSpin = QtWidgets.QSpinBox(self) 
 		self.AlphaSpin.setMinimum(0)
 		self.AlphaSpin.setMaximum(255)
 		self.AlphaSpin.setValue(255)
@@ -191,22 +191,22 @@ class ToolProperties (QtGui.QDockWidget):
 
 		h.addWidget(self.label)
 		h.addWidget(self.AlphaSpin)
-		tmp = QtGui.QWidget()
+		tmp = QtWidgets.QWidget()
 		tmp.setLayout(h) 
 
-		self.check = QtGui.QCheckBox("Color a Transparente")
+		self.check = QtWidgets.QCheckBox("Color a Transparente")
 		self.check.stateChanged.connect(self.changeDegState)
 
 		v2.addWidget(self.btn1)
 		v2.addWidget(self.btn2)
-		tmp2 = QtGui.QWidget()
+		tmp2 = QtWidgets.QWidget()
 		tmp2.setLayout(v2) 
 
 		self.v.addWidget(tmp2) 
 		#self.v.addWidget(tmp)
 		#self.v.addWidget(self.check)
 
-		w = QtGui.QWidget()
+		w = QtWidgets.QWidget()
 		w.setLayout(self.v)
 		self.v.addStretch()
 
@@ -227,7 +227,7 @@ class ToolProperties (QtGui.QDockWidget):
 
 	def setAlphaValue(self):
 		self.context.DegAlpha = self.AlphaSpin.value()
-		print self.context.DegAlpha
+		print(self.context.DegAlpha)
 
 	def updateWidget(self):
 		self.setWidget(self.widgets[self.context.currentTool])
