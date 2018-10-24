@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3:
 #coding: utf-8
 
 import sys, os
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 from mainwindow import MainWindow
 from signals import Signals
@@ -22,14 +22,14 @@ def readCSS(fname):
 
 if __name__ == '__main__':
 
-	app = QtGui.QApplication(sys.argv)
-	#app.setWindowIcon(QtGui.QIcon("images/icon.png"))
+	app = QtWidgets.QApplication(sys.argv)
+	#app.setWindowIcon(QtWidgets.QIcon("images/icon.png"))
 
 	sys.setrecursionlimit(4096*4096)
 
 	customFnt = "Lato-Reg.ttf"
 	if QtGui.QFontDatabase().addApplicationFont(os.path.join("fonts", customFnt)) < 0:
-		print "Warning: Could not load custom font" + customFnt + ", falling back to default font."
+		print("Warning: Could not load custom font" + customFnt + ", falling back to default font.")
 	else:
 		fnt = QtGui.QFont("Lato", 10)
 		app.setFont(fnt)

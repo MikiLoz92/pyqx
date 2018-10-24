@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 import random
 
 
-class CurrentColor(QtGui.QLabel):
+class CurrentColor(QtWidgets.QLabel):
 
 	def __init__(self, primary, context, signals, Parent=None):
 
@@ -33,7 +33,7 @@ class CurrentColor(QtGui.QLabel):
 		mimecontext = QtCore.QMimeData()
 		mimecontext.setColorData(self.color)
 
-		drag = QtGui.QDrag(self)
+		drag = QtWidgets.QDrag(self)
 		drag.setMimeData(mimecontext)
 		drag.setHotSpot(e.pos() - self.rect().topLeft())
 
@@ -42,7 +42,7 @@ class CurrentColor(QtGui.QLabel):
 	def mouseReleaseEvent(self, e):
 
 		if e.button() == Qt.LeftButton:
-			c = QtGui.QColorDialog.getColor(self.color)
+			c = QtWidgets.QColorDialog.getColor(self.color)
 			if c.isValid():
 				if self.primary: self.context.changePrimaryColor(c)
 				else: self.color = self.context.changeSecondaryColor(c)
@@ -59,7 +59,7 @@ class CurrentColor(QtGui.QLabel):
 		super(CurrentColor, self).update()
 
 
-class Color(QtGui.QFrame):
+class Color(QtWidgets.QFrame):
 	"""
 	Una QFrame cuadrada que representa un color de la paleta.
 	"""
@@ -88,7 +88,7 @@ class Color(QtGui.QFrame):
 		elif e.button() == Qt.RightButton:
 			self.context.changeSecondaryColor(self.color)
 		elif e.button() == Qt.MidButton:
-			c = QtGui.QColorDialog.getColor(self.color)
+			c = QtWidgets.QColorDialog.getColor(self.color)
 			if c.isValid():
 				self.changeColor(c)
 
@@ -98,13 +98,13 @@ class Color(QtGui.QFrame):
 		mimecontext = QtCore.QMimecontext()
 		mimecontext.setColorcontext(self.color)
 
-		drag = QtGui.QDrag(self)
+		drag = QtWidgets.QDrag(self)
 		drag.setMimecontext(mimecontext)
 		drag.setHotSpot(e.pos() - self.rect().topLeft())
 
 		dropAction = drag.start(QtCore.Qt.MoveAction)
 
-		self.changeColor(QtGui.QColor(0,0,0))
+		self.changeColor(QtWidgets.QColor(0,0,0))
 	"""
 
 	def dragEnterEvent(self, e):
@@ -114,7 +114,7 @@ class Color(QtGui.QFrame):
 
 	def dropEvent(self, e):
 
-		self.changeColor(QtGui.QColor(e.mimeData().colorData()))
+		self.changeColor(QtWidgets.QColor(e.mimeData().colorData()))
 
 		e.setDropAction(QtCore.Qt.CopyAction)
 		e.accept()
@@ -130,7 +130,7 @@ class Color(QtGui.QFrame):
 		self.context.palette[self.position] = [c.red(), c.green(), c.blue()]
 		self.update()
 
-class Palette (QtGui.QWidget):
+class Palette (QtWidgets.QWidget):
 
 	def __init__(self, context, signals, Parent=None):
 
@@ -141,7 +141,7 @@ class Palette (QtGui.QWidget):
 		self.signals = signals
 		self.setObjectName("Palette")
 
-		palette = QtGui.QGridLayout()
+		palette = QtWidgets.QGridLayout()
 		for i in range(5):
 			for j in range(12):
 				palette.addWidget(Color(i*12+j, self.context.palette[i*12+j], self.context, self.signals), i, j)
@@ -153,17 +153,17 @@ class Palette (QtGui.QWidget):
 				"""
 		palette.setSpacing(1)
 
-		hbox = QtGui.QHBoxLayout()
+		hbox = QtWidgets.QHBoxLayout()
 		hbox.addWidget(CurrentColor(True, self.context, self.signals))
 		hbox.addWidget(CurrentColor(False, self.context, self.signals))
 		hbox.setSpacing(2)
-		#hbox.setSizeConstraint(QtGui.QLayout.SetMaximumSize)
+		#hbox.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
 
-		vbox = QtGui.QVBoxLayout()
+		vbox = QtWidgets.QVBoxLayout()
 		vbox.addLayout(hbox)
 		vbox.addLayout(palette)
 		vbox.setSpacing(2)
-		#vbox.setSizeConstraint(QtGui.QLayout.SetMaximumSize)
+		#vbox.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
 
 		self.setLayout(vbox)
-		self.setSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Maximum)
+		self.setSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)

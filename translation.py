@@ -2,7 +2,7 @@
 #coding: utf-8
 
 import os
-import ConfigParser
+from configparser import ConfigParser
 
 class Language:
 
@@ -23,11 +23,11 @@ class TDatabase:
 		self.d = {}
 		self.langAvailable = []
 
-		cp = ConfigParser.ConfigParser()
+		cp = ConfigParser()
 		l = os.listdir("lang")
 		for i in l:
 			cp.read("lang/" + i)
-			langname = cp.get("_lang", "name").decode("utf-8")
+			langname = cp.get("_lang", "name")
 			d2 = {}
 			for j in cp.sections()[1:]: # Sin la sección _lang
 				d3 = {}

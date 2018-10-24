@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 from canvas import Canvas
 
 
-class ScrollArea(QtGui.QScrollArea):
+class ScrollArea(QtWidgets.QScrollArea):
 	"""
 	La clase ScrollArea es una derivada de la clase QScrollArea.
 	En este widget se pone, centrado, el lienzo del dibujo (Canvas).
@@ -77,7 +77,7 @@ class ScrollArea(QtGui.QScrollArea):
 
 	def setNewImageZoom(self):
 
-		print "setNewImageZoom"
+		print("setNewImageZoom")
 
 		g = self.frameGeometry()
 		w = g.width()

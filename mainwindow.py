@@ -3,8 +3,8 @@
 
 import os
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import Qt
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import Qt
 
 import names as Pixeler
 from mainwidget import MainWidget
@@ -14,7 +14,7 @@ from preview import Preview
 from dialogs import NewFileDialog, ResizeImageDialog, ResizeCanvasDialog, Preferences
 
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 
 	def __init__(self, context, signals):
 
@@ -36,7 +36,7 @@ class MainWindow(QtGui.QMainWindow):
 		self.mainWidget = MainWidget(context, signals, self)
 		self.setCentralWidget(self.mainWidget)
 
-		self.imagePosLabel = QtGui.QLabel()
+		self.imagePosLabel = QtWidgets.QLabel()
 		self.imagePosLabel.setObjectName("ImagePosLabel")
 
 		self.signals.autoUpdateTool.connect(self.setCurrentTool)
@@ -54,7 +54,7 @@ class MainWindow(QtGui.QMainWindow):
 
 		l = []
 
-		self.tools = QtGui.QActionGroup(self)
+		self.tools = QtWidgets.QActionGroup(self)
 
 		tools = ["selection", "magicwand", "pencil", "eraser", "colorpicker", "fill", "gradient", "exchange"]
 		connects = [lambda: self.context.changeCurrentTool(Pixeler.Tools.Selection),
@@ -68,18 +68,18 @@ class MainWindow(QtGui.QMainWindow):
 		shortcuts = ['Z', '', 'X', 'C', 'A', 'S', 'D', '']
 
 		for i in range(len(tools)):
-			a = QtGui.QAction(QtGui.QIcon( os.path.join("themes", self.context.theme, tools[i] + ".png") ), self.context.getText("tools", tools[i]) + " (" + shortcuts[i] + ")", self.tools)
+			a = QtWidgets.QAction(QtGui.QIcon( os.path.join("themes", self.context.theme, tools[i] + ".png") ), self.context.getText("tools", tools[i]) + " (" + shortcuts[i] + ")", self.tools)
 			a.setCheckable(True)
 			a.setShortcut(shortcuts[i])
 			if connects[i] != 0: a.toggled.connect(connects[i])
 			l.append(a)
 
-		a = QtGui.QAction(QtGui.QIcon( os.path.join("themes", self.context.theme, "zoomin.png") ), self.context.getText("tools", "zoomin"), self.tools)
+		a = QtWidgets.QAction(QtGui.QIcon( os.path.join("themes", self.context.theme, "zoomin.png") ), self.context.getText("tools", "zoomin"), self.tools)
 		a.setShortcut("Ctrl++")
 		a.triggered.connect(self.zoomIn)
 		l.append(a)
 
-		a = QtGui.QAction(QtGui.QIcon( os.path.join("themes", self.context.theme, "zoomout.png") ), self.context.getText("tools", "zoomout"), self.tools)
+		a = QtWidgets.QAction(QtGui.QIcon( os.path.join("themes", self.context.theme, "zoomout.png") ), self.context.getText("tools", "zoomout"), self.tools)
 		a.setShortcut("Ctrl+-")
 		a.triggered.connect(self.zoomOut)
 		l.append(a)
@@ -90,7 +90,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	def createToolBar(self):
 
-		toolBar = QtGui.QToolBar()
+		toolBar = QtWidgets.QToolBar()
 		l = self.createToolBarActions()
 
 		j = 0
@@ -116,7 +116,7 @@ class MainWindow(QtGui.QMainWindow):
 		l = []
 
 		for i in range(len(ids)):
-			a = QtGui.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_file_labels", ids[i]), self)
+			a = QtWidgets.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_file_labels", ids[i]), self)
 			a.setShortcut(shortcuts[i])
 			a.triggered.connect(self.restoreFocus)
 			a.setStatusTip(self.context.getText("menu_file_status_tips", ids[i]))
@@ -137,7 +137,7 @@ class MainWindow(QtGui.QMainWindow):
 		l = []
 
 		for i in range(len(ids)):
-			a = QtGui.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_edit_labels", ids[i]), self)
+			a = QtWidgets.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_edit_labels", ids[i]), self)
 			a.setShortcut(shortcuts[i])
 			a.triggered.connect(self.restoreFocus)
 			a.setStatusTip(self.context.getText("menu_edit_status_tips", ids[i]))
@@ -161,7 +161,7 @@ class MainWindow(QtGui.QMainWindow):
 		l = []
 
 		for i in range(len(ids)):
-			a = QtGui.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_view_labels", ids[i]), self)
+			a = QtWidgets.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_view_labels", ids[i]), self)
 			a.setShortcut(shortcuts[i])
 			a.triggered.connect(self.restoreFocus)
 			a.setStatusTip(self.context.getText("menu_view_status_tips", ids[i]))
@@ -189,7 +189,7 @@ class MainWindow(QtGui.QMainWindow):
 		l = []
 
 		for i in range(len(ids)):
-			a = QtGui.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_transform_labels", ids[i]), self)
+			a = QtWidgets.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_transform_labels", ids[i]), self)
 			a.setShortcut(shortcuts[i])
 			a.triggered.connect(self.restoreFocus)
 			a.setStatusTip(self.context.getText("menu_transform_status_tips", ids[i]))
@@ -212,7 +212,7 @@ class MainWindow(QtGui.QMainWindow):
 		l = []
 
 		for i in range(len(ids)):
-			a = QtGui.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_help_labels", ids[i]), self)
+			a = QtWidgets.QAction(QtGui.QIcon("images/" + icons[i]), self.context.getText("menu_help_labels", ids[i]), self)
 			a.setShortcut(shortcuts[i])
 			a.triggered.connect(self.restoreFocus)
 			a.setStatusTip(self.context.getText("menu_help_status_tips", ids[i]))
@@ -257,21 +257,21 @@ class MainWindow(QtGui.QMainWindow):
 	def createDockWidgets(self):
 		
 		# Palette widget
-		self.palette = QtGui.QDockWidget(self.context.getText("dock_widgets", "palette"), self)
+		self.palette = QtWidgets.QDockWidget(self.context.getText("dock_widgets", "palette"), self)
 		self.palette.setAllowedAreas(Qt.RightDockWidgetArea)
-		self.palette.setFeatures(QtGui.QDockWidget.NoDockWidgetFeatures)
+		self.palette.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
 
 		paletteWidget = Palette(self.context, self.signals)
 
 		self.palette.setWidget(paletteWidget)
-		self.palette.setSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)
+		self.palette.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
 
 		self.addDockWidget(Qt.RightDockWidgetArea, self.palette)
 
 		# Tool Properties widget
 		self.toolProperties = ToolProperties(self.context.getText("dock_widgets", "tool_properties"), self.context, self.signals)
 		self.addDockWidget(Qt.RightDockWidgetArea, self.toolProperties)
-		self.toolProperties.setSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
+		self.toolProperties.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
 
 		# Preview
 		self.preview = Preview(self.context.getText("dock_widgets", "preview"), self.context, self.signals, self)
@@ -279,7 +279,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	def restoreFocus(self):
 
-		print "Restoring Focus"
+		print("Restoring Focus")
 		self.ctrlPressed = False
 		self.releaseMouse()
 		self.releaseKeyboard()
@@ -308,7 +308,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	def openFile(self):
 		
-		fileName = QtGui.QFileDialog.getOpenFileName(self,
+		fileName = QtWidgets.QFileDialog.getOpenFileName(self,
 					self.context.getText("dialog_open", "title"),
 					"/home",
 					self.context.getText("dialog_open", "images") + u" (*.bmp *.gif *.png *.xpm *.jpg);;" + self.context.getText("dialog_open", "all_files") + u" (*)")
@@ -324,8 +324,8 @@ class MainWindow(QtGui.QMainWindow):
 
 	def saveFileAs(self):
 
-		d = QtGui.QFileDialog()
-		fileName, filterName = d.getSaveFileNameAndFilter(self,
+		d = QtWidgets.QFileDialog()
+		fileName, filterName = d.getSaveFileName(self,
 					self.context.getText("dialog_save", "title"), 
 					"", 
 					"*.bmp;;*.gif;;*.png;;*.xpm;;*.jpg")
@@ -346,7 +346,7 @@ class MainWindow(QtGui.QMainWindow):
 
 		if self.context.currentImage().posHistory > 0:
 			self.context.currentImage().posHistory -= 1
-			self.context.currentImage().image = QtGui.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
+			self.context.currentImage().image = QtWidgets.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
 			self.signals.updateCanvas.emit()
 			self.signals.resizeCanvas.emit()
 
@@ -354,7 +354,7 @@ class MainWindow(QtGui.QMainWindow):
 
 		if self.context.currentImage().posHistory < len(self.context.currentImage().history)-1:
 			self.context.currentImage().posHistory += 1
-			self.context.currentImage().image = QtGui.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
+			self.context.currentImage().image = QtWidgets.QImage(self.context.currentImage().history[self.context.currentImage().posHistory])
 			self.signals.updateCanvas.emit()
 			self.signals.resizeCanvas.emit()
 
@@ -376,7 +376,7 @@ class MainWindow(QtGui.QMainWindow):
 
 	def paste(self):
 
-		clipboard = QtGui.QApplication.clipboard()
+		clipboard = QtWidgets.QApplication.clipboard()
 		if not clipboard.image().isNull():
 			self.signals.pasteImage.emit()
 			self.signals.updateCanvas.emit()
@@ -456,7 +456,7 @@ class MainWindow(QtGui.QMainWindow):
 		super(MainWindow, self).keyPressEvent(event)
 
 		if event.key() == Qt.Key_Control:
-			print "Control Pressed"
+			print("Control Pressed")
 			self.ctrlPressed = True
 			QtCore.QCoreApplication.instance().setOverrideCursor(self.context.colorPickerCur)
 			self.signals.ctrlPressed.emit()
@@ -495,10 +495,10 @@ class MainWindow(QtGui.QMainWindow):
 		super(MainWindow, self).mousePressEvent(event)
 
 		if self.ctrlPressed:
-			print "Picking Desktop Color"
+			print("Picking Desktop Color")
 			widget = QtCore.QCoreApplication.instance().desktop().screen()
-			im = QtGui.QPixmap.grabWindow(widget.winId()).toImage() # Captura de pantalla
-			c = QtGui.QColor(im.pixel(QtGui.QCursor.pos())) # Cogemos el color de la posición del cursor
+			im = QtWidgets.QPixmap.grabWindow(widget.winId()).toImage() # Captura de pantalla
+			c = QtWidgets.QColor(im.pixel(QtWidgets.QCursor.pos())) # Cogemos el color de la posición del cursor
 			if event.button() == Qt.LeftButton:
 				self.context.changePrimaryColor(c) # Cambiamos el color primario actual por el que hemos cogido
 			elif event.button() == Qt.RightButton:
@@ -513,8 +513,8 @@ class MainWindow(QtGui.QMainWindow):
 		# Lo mismo de antes pero para cuando el ratón se mueve
 		if self.ctrlPressed:
 			widget = QtCore.QCoreApplication.instance().desktop().screen()
-			im = QtGui.QPixmap.grabWindow(widget.winId()).toImage() # Captura de pantalla
-			c = QtGui.QColor(im.pixel(QtGui.QCursor.pos())) # Cogemos el color de la posición del cursor
+			im = QtWidgets.QPixmap.grabWindow(widget.winId()).toImage() # Captura de pantalla
+			c = QtWidgets.QColor(im.pixel(QtWidgets.QCursor.pos())) # Cogemos el color de la posición del cursor
 			if event.buttons() == Qt.LeftButton:
 				self.context.changePrimaryColor(c) # Cambiamos el color primario actual por el que hemos cogido
 			elif event.buttons() == Qt.RightButton:
@@ -538,16 +538,16 @@ class MainWindow(QtGui.QMainWindow):
 
 		if len(l) > 0:
 			# Mostrar diálogo
-			reply = QtGui.QMessageBox.warning(self, self.context.getText("dialog_exit", "title"),
+			reply = QtWidgets.QMessageBox.warning(self, self.context.getText("dialog_exit", "title"),
 				self.context.getText("dialog_exit", "message"),
-				QtGui.QMessageBox.SaveAll | QtGui.QMessageBox.Discard | QtGui.QMessageBox.Cancel,
-				QtGui.QMessageBox.Cancel)
-			if reply == QtGui.QMessageBox.Discard:
+				QtWidgets.QMessageBox.SaveAll | QtWidgets.QMessageBox.Discard | QtWidgets.QMessageBox.Cancel,
+				QtWidgets.QMessageBox.Cancel)
+			if reply == QtWidgets.QMessageBox.Discard:
 				event.accept()
-			elif reply == QtGui.QMessageBox.Cancel:
+			elif reply == QtWidgets.QMessageBox.Cancel:
 				event.ignore()  
 				return
-			elif reply == QtGui.QMessageBox.SaveAll:
+			elif reply == QtWidgets.QMessageBox.SaveAll:
 				for i in l:
 					self.mainWidget.setCurrentIndex(i)
 					self.context.setCurrentImagePos(i)
